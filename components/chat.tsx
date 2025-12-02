@@ -7,6 +7,9 @@ import { useEffect, useRef, useState } from "react";
 import useSWR, { useSWRConfig } from "swr";
 import { unstable_serialize } from "swr/infinite";
 import { ChatHeader } from "@/components/chat-header";
+import { SidebarToggle } from "@/components/sidebar-toggle";
+import { Button } from "@/components/ui/button";
+import { PlusIcon } from "@/components/icons";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -26,6 +29,8 @@ import type { Attachment, ChatMessage } from "@/lib/types";
 import type { AppUsage } from "@/lib/usage";
 import { fetcher, fetchWithErrorHandlers, generateUUID } from "@/lib/utils";
 import { Artifact } from "./artifact";
+import { ArtworkPanel } from "./artwork-panel";
+import { GreetingProvider } from "./greeting";
 import { useDataStream } from "./data-stream-provider";
 import { Messages } from "./messages";
 import { MultimodalInput } from "./multimodal-input";
@@ -168,45 +173,84 @@ export function Chat({
   });
 
   return (
-    <>
-      <div className="overscroll-behavior-contain flex h-dvh min-w-0 touch-pan-y flex-col bg-background">
-        <ChatHeader
-          chatId={id}
-          isReadonly={isReadonly}
-          selectedVisibilityType={initialVisibilityType}
-        />
+    <GreetingProvider>
+      <div className="relative overscroll-behavior-contain flex h-dvh min-w-0 touch-pan-y flex-col bg-background">
+        {/* Toggle sidebar - Izquierda de toda la pantalla en desktop */}
+        <div className="hidden md:block absolute left-0 top-0 z-20 p-2">
+          <SidebarToggle />
+        </div>
 
-        <Messages
-          chatId={id}
-          isArtifactVisible={isArtifactVisible}
-          isReadonly={isReadonly}
-          messages={messages}
-          regenerate={regenerate}
-          selectedModelId={initialChatModel}
-          setMessages={setMessages}
-          status={status}
-          votes={votes}
-        />
-
-        <div className="sticky bottom-0 z-1 mx-auto flex w-full max-w-4xl gap-2 border-t-0 bg-background px-2 pb-3 md:px-4 md:pb-4">
-          {!isReadonly && (
-            <MultimodalInput
-              attachments={attachments}
-              chatId={id}
-              input={input}
-              messages={messages}
-              onModelChange={setCurrentModelId}
-              selectedModelId={currentModelId}
-              selectedVisibilityType={visibilityType}
-              sendMessage={sendMessage}
-              setAttachments={setAttachments}
-              setInput={setInput}
-              setMessages={setMessages}
-              status={status}
-              stop={stop}
-              usage={usage}
+        {/* Contenedor de columnas */}
+        <div className="flex flex-1 min-h-0 flex-row pt-6">
+          {/* Panel izquierdo - Imagen del objeto */}
+          <div className="hidden md:flex md:w-1/2 shrink-0">
+            <ArtworkPanel
+              imageUrl="/images/monumento-cortes-cadiz.jpg"
+              title="Monumento a las Cortes de Cadiz 1812"
+              hasPrevious={false}
+              hasNext={false}
             />
-          )}
+          </div>
+
+          {/* Panel derecho - Chat */}
+          <div className="relative flex flex-1 md:w-1/2 flex-col min-w-0">
+            {/* Botón + - Derecha en desktop */}
+            <div className="hidden md:block absolute right-0 top-0 z-20 p-2">
+              <Button
+                className="h-8 w-8 rounded-full shrink-0"
+                onClick={() => {
+                  router.push("/");
+                  router.refresh();
+                }}
+                variant="outline"
+                size="icon"
+              >
+                <PlusIcon />
+                <span className="sr-only">New Chat</span>
+              </Button>
+            </div>
+
+            <ChatHeader
+              chatId={id}
+              isReadonly={isReadonly}
+              selectedVisibilityType={initialVisibilityType}
+              artworkImageUrl="/images/monumento-cortes-cadiz.jpg"
+            />
+
+          <Messages
+            chatId={id}
+            isArtifactVisible={isArtifactVisible}
+            isReadonly={isReadonly}
+            messages={messages}
+            regenerate={regenerate}
+            selectedModelId={initialChatModel}
+            setMessages={setMessages}
+            status={status}
+            votes={votes}
+            artworkImageUrl="/images/monumento-cortes-cadiz.jpg"
+          />
+
+          <div className="sticky bottom-0 z-1 mx-auto flex w-full max-w-2xl min-w-[40px] gap-2 border-t-0 bg-background px-2 pb-3 md:px-4 md:pb-4">
+            {!isReadonly && (
+              <MultimodalInput
+                attachments={attachments}
+                chatId={id}
+                input={input}
+                messages={messages}
+                onModelChange={setCurrentModelId}
+                selectedModelId={currentModelId}
+                selectedVisibilityType={visibilityType}
+                sendMessage={sendMessage}
+                setAttachments={setAttachments}
+                setInput={setInput}
+                setMessages={setMessages}
+                status={status}
+                stop={stop}
+                usage={usage}
+              />
+            )}
+          </div>
+          </div>
         </div>
       </div>
 
@@ -257,6 +301,6 @@ export function Chat({
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-    </>
+    </GreetingProvider>
   );
 }

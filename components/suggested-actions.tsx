@@ -11,19 +11,19 @@ type SuggestedActionsProps = {
   chatId: string;
   sendMessage: UseChatHelpers<ChatMessage>["sendMessage"];
   selectedVisibilityType: VisibilityType;
+  suggestions?: string[];
 };
 
-function PureSuggestedActions({ chatId, sendMessage }: SuggestedActionsProps) {
-  const suggestedActions = [
-    "What are the advantages of using Next.js?",
-    "Write code to demonstrate Dijkstra's algorithm",
-    "Help me write an essay about Silicon Valley",
-    "What is the weather in San Francisco?",
+function PureSuggestedActions({ chatId, sendMessage, suggestions }: SuggestedActionsProps) {
+  const suggestedActions = suggestions || [
+    "¿Qué buscaban realmente los diputados de 1812?",
+    "¿Qué significan las figuras de este monumento?",
+    "¿Qué significó esta Constitución?",
   ];
 
   return (
     <div
-      className="grid w-full gap-2 sm:grid-cols-2"
+      className="flex w-full flex-col gap-2 items-start"
       data-testid="suggested-actions"
     >
       {suggestedActions.map((suggestedAction, index) => (
@@ -33,9 +33,10 @@ function PureSuggestedActions({ chatId, sendMessage }: SuggestedActionsProps) {
           initial={{ opacity: 0, y: 20 }}
           key={suggestedAction}
           transition={{ delay: 0.05 * index }}
+          className="w-auto"
         >
           <Suggestion
-            className="h-auto w-full whitespace-normal p-3 text-left"
+            className="h-auto w-auto whitespace-normal rounded-lg border border-border bg-background px-3 py-2 text-left text-xs transition-colors hover:bg-muted"
             onClick={(suggestion) => {
               window.history.pushState({}, "", `/chat/${chatId}`);
               sendMessage({
