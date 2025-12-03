@@ -181,7 +181,7 @@ export function Chat({
         </div>
 
         {/* Contenedor de columnas */}
-        <div className="flex flex-1 min-h-0 flex-row pt-6">
+        <div className="flex flex-1 min-h-0 flex-row pt-6 px-6 md:px-12 lg:px-16">
           {/* Panel izquierdo - Imagen del objeto */}
           <div className="hidden md:flex md:w-1/2 shrink-0">
             <ArtworkPanel

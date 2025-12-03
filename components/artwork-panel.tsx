@@ -30,8 +30,8 @@ export function ArtworkPanel({
   return (
     <div className="relative flex h-full w-full flex-col bg-background">
       {/* Top bar con título */}
-      <div className="flex items-center justify-between px-4 py-4 md:py-6">
-        <h2 className="text-2xl md:text-3xl tracking-tight text-center flex-1 truncate" style={{ fontFamily: 'var(--font-recoleta), serif' }}>
+      <div className="flex items-center justify-between px-6 md:px-8 py-2 md:py-3">
+        <h2 className="text-4xl md:text-5xl tracking-tight text-center flex-1 break-words" style={{ fontFamily: 'var(--font-recoleta), serif' }}>
           {title}
         </h2>
         {onClose && (
@@ -48,41 +48,37 @@ export function ArtworkPanel({
       </div>
 
       {/* Panel de imagen */}
-      <div className="relative flex-1 overflow-hidden px-4 py-6">
-        <div className="relative h-full w-full rounded-lg overflow-hidden">
-          <NextImage
-            src={imageUrl}
-            alt={title}
-            fill
-            className="object-contain rounded-lg"
-            priority
-            unoptimized
-          />
+      <div className="relative flex-1 overflow-hidden px-6 py-2">
+        <div className="relative h-full w-full flex items-center justify-center">
+          <div 
+            className="relative w-full h-full max-w-[90%] max-h-[90%] rounded-2xl overflow-hidden border border-border/50 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${imageUrl})` }}
+          >
+            {/* Flechas de navegación */}
+            {hasPrevious && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute left-2 top-1/2 -translate-y-1/2 h-10 w-10 bg-background/80 hover:bg-background"
+                onClick={onPrevious}
+                aria-label="Previous"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </Button>
+            )}
 
-          {/* Flechas de navegación */}
-          {hasPrevious && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute left-2 top-1/2 -translate-y-1/2 h-10 w-10 bg-background/80 hover:bg-background"
-              onClick={onPrevious}
-              aria-label="Previous"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </Button>
-          )}
-
-          {hasNext && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 bg-background/80 hover:bg-background"
-              onClick={onNext}
-              aria-label="Next"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </Button>
-          )}
+            {hasNext && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="absolute right-2 top-1/2 -translate-y-1/2 h-10 w-10 bg-background/80 hover:bg-background"
+                onClick={onNext}
+                aria-label="Next"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </Button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -90,13 +86,13 @@ export function ArtworkPanel({
       <div className="p-4">
         <Button
           variant="outline"
-          className="w-full justify-between"
+          className="w-full justify-center relative"
           onClick={() => setShowDetails(!showDetails)}
         >
           <span>Fuentes de Información</span>
           <ChevronUp
             className={cn(
-              "h-4 w-4 transition-transform",
+              "h-4 w-4 transition-transform absolute right-4",
               showDetails && "rotate-180"
             )}
           />

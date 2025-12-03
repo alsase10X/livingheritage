@@ -73,7 +73,7 @@ function PureChatHeader({
         
         {/* Título - Solo visible en móvil */}
         <div className="flex flex-col min-w-0 flex-1 text-center">
-          <h1 className="text-2xl font-semibold leading-tight" style={{ fontFamily: 'var(--font-recoleta), serif' }}>
+          <h1 className="text-3xl font-semibold leading-tight" style={{ fontFamily: 'var(--font-recoleta), serif' }}>
             Monumento a las Cortes de Cadiz 1812
           </h1>
         </div>
@@ -84,7 +84,7 @@ function PureChatHeader({
         {/* Los botones se muestran en los bordes de la columna en chat.tsx */}
       </div>
 
-      {/* Tabs Conversar/Descripción/Localización */}
+      {/* Tabs Conversar/Escuchar/Localización */}
       <div className="flex gap-2 px-4 pb-2">
         <Button
           className={cn(
@@ -110,7 +110,7 @@ function PureChatHeader({
           variant="ghost"
           size="sm"
         >
-          Descripción
+          Escuchar
         </Button>
         <Button
           className={cn(
