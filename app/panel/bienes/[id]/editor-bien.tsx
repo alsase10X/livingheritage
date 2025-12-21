@@ -46,8 +46,20 @@ export function EditorBien({ bien, imagenes }: EditorBienProps) {
         >
           ← Volver a bienes
         </Link>
-        <h1 className="text-2xl font-bold">Editor de bien</h1>
-        <p className="text-gray-700 mt-1">{bien.denominacion}</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold">Editor de bien</h1>
+            <p className="text-gray-700 mt-1">{bien.denominacion}</p>
+          </div>
+          <Link
+            href={`/bien/${bien.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors text-sm font-medium"
+          >
+            Ver vista pública →
+          </Link>
+        </div>
       </div>
 
       {/* Tabs */}
@@ -612,9 +624,20 @@ function TabPreview({
 
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-semibold border-b pb-2 text-gray-900">
-        Vista previa del bien
-      </h2>
+      {/* Botón para ver vista pública */}
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold text-gray-900">
+          Vista previa del bien
+        </h2>
+        <Link
+          href={`/bien/${bien.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors text-sm font-medium"
+        >
+          Abrir vista pública en nueva pestaña →
+        </Link>
+      </div>
 
       {/* Indicadores de estado */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">

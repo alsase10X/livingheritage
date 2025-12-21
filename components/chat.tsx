@@ -164,6 +164,9 @@ export function Chat({
 
   const [attachments, setAttachments] = useState<Attachment[]>([]);
   const isArtifactVisible = useArtifactSelector((state) => state.isVisible);
+  const [activeTab, setActiveTab] = useState<"chat" | "description" | "map">(
+    "chat"
+  );
 
   useAutoResume({
     autoResume,
@@ -211,9 +214,11 @@ export function Chat({
             </div>
 
             <ChatHeader
+              activeTab={activeTab}
               chatId={id}
               isReadonly={isReadonly}
               selectedVisibilityType={initialVisibilityType}
+              setActiveTab={setActiveTab}
               artworkImageUrl="/images/monumento-cortes-cadiz.jpg"
             />
 
@@ -230,26 +235,28 @@ export function Chat({
             artworkImageUrl="/images/monumento-cortes-cadiz.jpg"
           />
 
-          <div className="sticky bottom-0 z-1 mx-auto flex w-full max-w-2xl min-w-[40px] gap-2 border-t-0 bg-background px-2 pb-3 md:px-4 md:pb-4">
-            {!isReadonly && (
-              <MultimodalInput
-                attachments={attachments}
-                chatId={id}
-                input={input}
-                messages={messages}
-                onModelChange={setCurrentModelId}
-                selectedModelId={currentModelId}
-                selectedVisibilityType={visibilityType}
-                sendMessage={sendMessage}
-                setAttachments={setAttachments}
-                setInput={setInput}
-                setMessages={setMessages}
-                status={status}
-                stop={stop}
-                usage={usage}
-              />
-            )}
-          </div>
+          {activeTab !== "map" && (
+            <div className="sticky bottom-0 z-1 mx-auto flex w-full max-w-2xl min-w-[40px] gap-2 border-t-0 bg-background px-2 pb-3 md:px-4 md:pb-4">
+              {!isReadonly && (
+                <MultimodalInput
+                  attachments={attachments}
+                  chatId={id}
+                  input={input}
+                  messages={messages}
+                  onModelChange={setCurrentModelId}
+                  selectedModelId={currentModelId}
+                  selectedVisibilityType={visibilityType}
+                  sendMessage={sendMessage}
+                  setAttachments={setAttachments}
+                  setInput={setInput}
+                  setMessages={setMessages}
+                  status={status}
+                  stop={stop}
+                  usage={usage}
+                />
+              )}
+            </div>
+          )}
           </div>
         </div>
       </div>

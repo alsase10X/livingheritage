@@ -1,0 +1,93 @@
+{
+  "id": "cadiz-1812",
+  "nombre": "Cádiz 1812",
+  "subtitulo": "La ciudad que cambió España",
+  "fraseGuia": "Te acompañaré por las calles donde nació la primera Constitución española. ¿Empezamos?",
+  "imagenPortada": "/images/rutas/cadiz-1812/portada.jpg",
+  "duracionTotal": "1h 30min",
+  "distanciaTotal": "2.4 km",
+  "numeroPuntos": 5,
+  
+  "puntos": [
+    {
+      "id": "monumento-cortes",
+      "orden": 1,
+      "nombre": "Monumento a las Cortes",
+      "lat": 36.5270,
+      "lng": -6.2925,
+      "imagen": "/images/rutas/cadiz-1812/monumento-cortes.jpg",
+      "audio": "/audio/rutas/cadiz-1812/monumento-cortes.mp3",
+      "duracionAudio": "1:30",
+      "textoIntro": "Cuatro figuras sostienen sobre sus cabezas el libro de la Constitución de 1812.",
+      "textoCompleto": "Mira hacia arriba. ¿Ves esas cuatro figuras sosteniendo un libro sobre sus cabezas? Llevan más de cien años así, sin descanso. Sostienen la Constitución de 1812.\n\nSoy un monumento que tardó un siglo en existir. Me pidieron el día después de firmarse la Constitución, en 1812. Pero los vaivenes políticos de España me fueron posponiendo. No fue hasta 1912 —cien años después— cuando por fin empezaron a construirme.\n\nFíjate en el sillón vacío que tengo en el centro. Representa al rey ausente —Fernando VII, prisionero de Napoleón— en cuyo nombre se gobernaba. Detrás de él, una figura de mujer sostiene una espada y una ley: es la Constitución misma.\n\nA mi izquierda, la guerra. A mi derecha, la paz. Así se vivía en Cádiz en 1812: escribiendo leyes mientras caían las bombas.",
+      "chips": ["¿Por qué tardó un siglo?", "¿Qué representan las figuras?", "Háblame del asedio"]
+    },
+    {
+      "id": "oratorio-san-felipe",
+      "orden": 2,
+      "nombre": "Oratorio de San Felipe Neri",
+      "lat": 36.5295,
+      "lng": -6.2950,
+      "imagen": "/images/rutas/cadiz-1812/oratorio-san-felipe.jpg",
+      "audio": "/audio/rutas/cadiz-1812/oratorio-san-felipe.mp3",
+      "duracionAudio": "1:45",
+      "textoIntro": "Aquí, en este templo elíptico, se debatió y firmó la primera Constitución liberal de España.",
+      "textoCompleto": "Estás ante el lugar donde nació la España moderna. Dentro de mis muros, 300 diputados de España y América debatieron durante meses cómo debía gobernarse un país.\n\nNo fue fácil. Había liberales y absolutistas. Había peninsulares y americanos. Había religiosos y laicos. Pero mientras las bombas francesas caían sobre Cádiz, ellos seguían debatiendo.\n\nMi forma elíptica no es casual. Permite que todos los diputados se vean las caras. Aquí no hay rincones donde esconderse. Cada voto es público, cada palabra queda registrada.\n\nEl 19 de marzo de 1812, día de San José, se proclamó la Constitución. Por eso la llamaron 'La Pepa'. Fue la primera constitución liberal de España, y una de las primeras del mundo.",
+      "chips": ["¿Por qué aquí y no en Madrid?", "¿Qué decía La Pepa?", "¿Había diputados americanos?"]
+    },
+    {
+      "id": "plaza-san-antonio",
+      "orden": 3,
+      "nombre": "Plaza de San Antonio",
+      "lat": 36.5310,
+      "lng": -6.2970,
+      "imagen": "/images/rutas/cadiz-1812/plaza-san-antonio.jpg",
+      "audio": "/audio/rutas/cadiz-1812/plaza-san-antonio.mp3",
+      "duracionAudio": "1:15",
+      "textoIntro": "En esta plaza se leyó por primera vez la Constitución de 1812 al pueblo de Cádiz.",
+      "textoCompleto": "Imagina esta plaza llena de gente. Es 19 de marzo de 1812. Acaban de aprobar la Constitución en el Oratorio, a pocos metros de aquí.\n\nUn pregonero sube a un estrado y comienza a leer. 'Las Cortes Generales y Extraordinarias de la Nación española, decretan la siguiente Constitución...'\n\nLa gente escucha en silencio. Muchos no saben leer. Pero entienden que algo importante está pasando. Por primera vez, la ley dice que el poder no viene de Dios a través del rey, sino de la Nación.\n\nCada año, el 19 de marzo, volvemos a leer la Constitución aquí. Es nuestra manera de recordar que la libertad no se hereda: se conquista.",
+      "chips": ["¿Qué pasó después?", "¿La gente entendía lo que oía?", "¿Se sigue celebrando?"]
+    },
+    {
+      "id": "torre-tavira",
+      "orden": 4,
+      "nombre": "Torre Tavira",
+      "lat": 36.5320,
+      "lng": -6.2935,
+      "imagen": "/images/rutas/cadiz-1812/torre-tavira.jpg",
+      "audio": "/audio/rutas/cadiz-1812/torre-tavira.mp3",
+      "duracionAudio": "1:30",
+      "textoIntro": "La torre vigía más alta de Cádiz, desde donde se controlaba el comercio con América.",
+      "textoCompleto": "Soy la torre más alta de Cádiz. Desde mis 45 metros de altura, los vigías controlaban la llegada de barcos de América.\n\nEn el siglo XVIII, Cádiz era el puerto más importante de España. Todo el comercio con América pasaba por aquí. Por eso la ciudad se llenó de torres miradores: los comerciantes querían ser los primeros en ver llegar sus barcos.\n\nPero mi historia tiene una sombra. Parte de ese comercio incluía esclavos. Las grandes fortunas gaditanas, las que construyeron los palacios que aún ves en el casco antiguo, se hicieron con el comercio americano. Y el comercio americano incluía personas.\n\nLa Constitución de 1812 no abolió la esclavitud. Los intereses económicos pesaron más que los ideales liberales. Esa contradicción sigue grabada en mis piedras.",
+      "chips": ["¿Cuántas torres hay en Cádiz?", "Háblame del comercio de esclavos", "¿Qué se ve desde arriba?"]
+    },
+    {
+      "id": "catedral",
+      "orden": 5,
+      "nombre": "Catedral de Cádiz",
+      "lat": 36.5280,
+      "lng": -6.2930,
+      "imagen": "/images/rutas/cadiz-1812/catedral.jpg",
+      "audio": "/audio/rutas/cadiz-1812/catedral.mp3",
+      "duracionAudio": "1:45",
+      "textoIntro": "Una catedral que tardó 116 años en construirse, testigo de la transformación de Cádiz.",
+      "textoCompleto": "Me llaman la Catedral Nueva, aunque ya tengo más de dos siglos. Empezaron a construirme en 1722 y no me terminaron hasta 1838. 116 años de obras.\n\n¿Por qué tanto tiempo? Porque Cádiz cambió mientras me construían. Empecé siendo barroca, pero cuando llegó el neoclasicismo, cambiaron mis planos. Por eso soy una mezcla de estilos: mi fachada es neoclásica, pero mi interior tiene ecos barrocos.\n\nDesde mi cripta puedes ver las tumbas de Manuel de Falla y José María Pemán. Desde mi torre, toda la bahía de Cádiz.\n\nPero lo que más me enorgullece es que sobreviví al asedio francés. Durante dos años, las bombas cayeron sobre Cádiz. Muchas no llegaban: los franceses calcularon mal la distancia. Las que llegaban, causaban terror pero no victoria. Cádiz nunca cayó.",
+      "chips": ["¿Por qué tardó tanto?", "¿Quién está enterrado aquí?", "Cuéntame del asedio francés"]
+    }
+  ],
+  
+  "polyline": [
+    [-6.2925, 36.5270],
+    [-6.2930, 36.5275],
+    [-6.2940, 36.5285],
+    [-6.2950, 36.5295],
+    [-6.2960, 36.5305],
+    [-6.2970, 36.5310],
+    [-6.2960, 36.5315],
+    [-6.2945, 36.5320],
+    [-6.2935, 36.5320],
+    [-6.2930, 36.5310],
+    [-6.2930, 36.5295],
+    [-6.2930, 36.5280]
+  ]
+}

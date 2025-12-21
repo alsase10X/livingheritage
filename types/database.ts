@@ -141,6 +141,8 @@ export interface Database {
           temas_sensibles: Json | null;
           autor_capa_2: string | null;
           fecha_capa_2: string | null;
+          generar_bienvenida_auto: boolean | null;
+          mensaje_bienvenida: string | null;
           // Audioguía
           tiene_audioguia: boolean | null;
           estado_audioguia: "borrador" | "revisada" | "publicada" | null;
@@ -206,6 +208,8 @@ export interface Database {
           temas_sensibles?: Json | null;
           autor_capa_2?: string | null;
           fecha_capa_2?: string | null;
+          generar_bienvenida_auto?: boolean | null;
+          mensaje_bienvenida?: string | null;
           tiene_audioguia?: boolean | null;
           estado_audioguia?: "borrador" | "revisada" | "publicada" | null;
           duracion_objetivo?: number | null;
@@ -269,6 +273,8 @@ export interface Database {
           temas_sensibles?: Json | null;
           autor_capa_2?: string | null;
           fecha_capa_2?: string | null;
+          generar_bienvenida_auto?: boolean | null;
+          mensaje_bienvenida?: string | null;
           tiene_audioguia?: boolean | null;
           estado_audioguia?: "borrador" | "revisada" | "publicada" | null;
           duracion_objetivo?: number | null;

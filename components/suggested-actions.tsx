@@ -15,11 +15,13 @@ type SuggestedActionsProps = {
 };
 
 function PureSuggestedActions({ chatId, sendMessage, suggestions }: SuggestedActionsProps) {
-  const suggestedActions = suggestions || [
+  // Si suggestions es undefined, usar las sugerencias por defecto del chat genérico
+  // Si suggestions es un array (vacío o con elementos), usarlo directamente
+  const suggestedActions = suggestions === undefined ? [
     "¿Qué buscaban realmente los diputados de 1812?",
     "¿Qué significan las figuras de este monumento?",
     "¿Qué significó esta Constitución?",
-  ];
+  ] : suggestions;
 
   return (
     <div
@@ -38,7 +40,11 @@ function PureSuggestedActions({ chatId, sendMessage, suggestions }: SuggestedAct
           <Suggestion
             className="h-auto w-auto whitespace-normal rounded-lg border border-border bg-background px-3 py-2 text-left text-xs transition-colors hover:bg-muted"
             onClick={(suggestion) => {
-              window.history.pushState({}, "", `/chat/${chatId}`);
+              // Si es un chat público (bien), usar /bien/[id], si no /chat/[id]
+              const urlPath = selectedVisibilityType === "public" 
+                ? `/bien/${chatId}` 
+                : `/chat/${chatId}`;
+              window.history.pushState({}, "", urlPath);
               sendMessage({
                 role: "user",
                 parts: [{ type: "text", text: suggestion }],

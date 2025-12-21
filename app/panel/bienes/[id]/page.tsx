@@ -52,16 +52,23 @@ function EditorSkeleton() {
   );
 }
 
-export default async function EditorBienPage({
+async function EditorBienContent({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  return <CargarBien id={id} />;
+}
 
+export default async function EditorBienPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   return (
     <Suspense fallback={<EditorSkeleton />}>
-      <CargarBien id={id} />
+      <EditorBienContent params={params} />
     </Suspense>
   );
 }

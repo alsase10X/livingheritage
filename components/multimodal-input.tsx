@@ -106,7 +106,7 @@ function PureMultimodalInput({
   );
 
   useEffect(() => {
-    if (textareaRef.current) {
+    if (textareaRef.current && typeof setInput === "function") {
       const domValue = textareaRef.current.value;
       // Prefer DOM value over localStorage to handle hydration
       const finalValue = domValue || localStorageInput || "";
@@ -122,7 +122,9 @@ function PureMultimodalInput({
   }, [input, setLocalStorageInput]);
 
   const handleInput = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInput(event.target.value);
+    if (typeof setInput === "function") {
+      setInput(event.target.value);
+    }
   };
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -142,7 +144,7 @@ function PureMultimodalInput({
         })),
         {
           type: "text",
-          text: input,
+          text: input || "",
         },
       ],
     });
@@ -150,7 +152,9 @@ function PureMultimodalInput({
     setAttachments([]);
     setLocalStorageInput("");
     resetHeight();
-    setInput("");
+    if (typeof setInput === "function") {
+      setInput("");
+    }
 
     if (width && width > 768) {
       textareaRef.current?.focus();
@@ -291,7 +295,7 @@ function PureMultimodalInput({
             chatId={chatId}
             selectedVisibilityType={selectedVisibilityType}
             sendMessage={sendMessage}
-            suggestions={suggestions.length > 0 ? suggestions : undefined}
+            suggestions={suggestions}
           />
         )}
 
@@ -360,7 +364,7 @@ function PureMultimodalInput({
             placeholder="Pregunta lo que quieras..."
             ref={textareaRef}
             rows={1}
-            value={input}
+            value={input || ""}
           />
         </div>
         <PromptInputToolbar className="!border-top-0 border-t-0! p-0 shadow-none dark:border-0 dark:border-transparent!">
@@ -373,7 +377,7 @@ function PureMultimodalInput({
             <PromptInputSubmit
               className="size-8 rounded-full bg-primary text-primary-foreground transition-colors duration-200 hover:bg-primary/90 disabled:bg-muted disabled:text-muted-foreground"
               data-testid="send-button"
-              disabled={!input.trim() || uploadQueue.length > 0}
+              disabled={!input?.trim() || uploadQueue.length > 0}
               status={status}
             >
               <ArrowUpIcon size={14} />

@@ -43,6 +43,7 @@ export type CustomUIDataTypes = {
   clear: null;
   finish: null;
   usage: AppUsage;
+  bienSuggestions: string; // JSON string array de sugerencias
 };
 
 export type ChatMessage = UIMessage<

@@ -32,6 +32,10 @@ export async function actualizarBienCapa2(
     | "publicada"
     | null;
 
+  // Mensaje de bienvenida
+  const generar_bienvenida_auto = formData.get("generar_bienvenida_auto") === "true";
+  const mensaje_bienvenida = formData.get("mensaje_bienvenida") as string;
+
   // Mensajes clave (JSONB array)
   const mensajes_clave_text = formData.get("mensajes_clave") as string;
   let mensajes_clave = null;
@@ -72,7 +76,7 @@ export async function actualizarBienCapa2(
     }
   }
 
-  // Preparar datos para actualizar
+  // Preparar datos para actualizar (sin campos de bienvenida primero)
   const datosActualizados: BienUpdate = {
     tema_principal: tema_principal ? tema_principal.trim() : null,
     subtemas: subtemas
@@ -97,14 +101,44 @@ export async function actualizarBienCapa2(
     fecha_capa_2: new Date().toISOString(),
   };
 
-  // Actualizar en la base de datos
-  const { error } = await supabase
+  // Actualizar primero los campos principales (sin bienvenida)
+  const { error: errorPrincipal } = await supabase
     .from("bienes")
     .update(datosActualizados)
     .eq("id", bienId);
 
-  if (error) {
-    throw new Error(`Error al actualizar la Capa 2: ${error.message}`);
+  if (errorPrincipal) {
+    throw new Error(`Error al actualizar la Capa 2: ${errorPrincipal.message}`);
+  }
+
+  // Intentar actualizar los campos de bienvenida (puede fallar si las columnas no existen)
+  const datosBienvenida: BienUpdate = {
+    generar_bienvenida_auto: generar_bienvenida_auto,
+    mensaje_bienvenida: mensaje_bienvenida && mensaje_bienvenida.trim() !== "" 
+      ? mensaje_bienvenida.trim() 
+      : null,
+  };
+
+  const { error: errorBienvenida } = await supabase
+    .from("bienes")
+    .update(datosBienvenida)
+    .eq("id", bienId);
+
+  if (errorBienvenida) {
+    // Si las columnas no existen, informar al usuario pero no fallar
+    if (errorBienvenida.message.includes("generar_bienvenida_auto") || 
+        errorBienvenida.message.includes("schema cache")) {
+      throw new Error(
+        `⚠️ Las columnas de mensaje de bienvenida no existen aún en la base de datos.\n\n` +
+        `Los demás campos se guardaron correctamente, pero para usar el mensaje de bienvenida, ` +
+        `ejecuta esta migración SQL en Supabase:\n\n` +
+        `ALTER TABLE bienes\n` +
+        `ADD COLUMN IF NOT EXISTS generar_bienvenida_auto BOOLEAN DEFAULT true,\n` +
+        `ADD COLUMN IF NOT EXISTS mensaje_bienvenida TEXT;`
+      );
+    }
+    // Si es otro error, lanzarlo normalmente
+    throw new Error(`Error al actualizar los campos de bienvenida: ${errorBienvenida.message}`);
   }
 
   redirect(`/panel/bienes/${bienId}`);

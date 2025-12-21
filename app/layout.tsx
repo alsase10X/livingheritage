@@ -29,11 +29,11 @@ const robotoSlab = Roboto_Slab({
   variable: "--font-roboto-slab",
 });
 
-const recoleta = localFont({
+const roslindaleDisplay = localFont({
   src: [
     {
-      path: "../public/fonts/Recoleta-Medium.woff2",
-      weight: "500",
+      path: "../public/fonts/Roslindale Display Condensed Regular.woff2",
+      weight: "400",
       style: "normal",
     },
   ],
@@ -68,7 +68,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      className={`${inter.variable} ${robotoSlab.variable} ${recoleta.variable}`}
+      className={`${inter.variable} ${robotoSlab.variable} ${roslindaleDisplay.variable}`}
       // `next-themes` injects an extra classname to the body element to avoid
       // visual flicker before hydration. Hence the `suppressHydrationWarning`
       // prop is necessary to avoid the React hydration mismatch warning.

@@ -31,7 +31,7 @@ export function ArtworkPanel({
     <div className="relative flex h-full w-full flex-col bg-background">
       {/* Top bar con título */}
       <div className="flex items-center justify-between px-6 md:px-8 py-2 md:py-3">
-        <h2 className="text-4xl md:text-5xl tracking-tight text-center flex-1 break-words" style={{ fontFamily: 'var(--font-recoleta), serif' }}>
+        <h2 className="text-5xl md:text-6xl tracking-tight text-center flex-1 break-words" style={{ fontFamily: 'var(--font-recoleta), serif' }}>
           {title}
         </h2>
         {onClose && (

@@ -53,6 +53,11 @@ export function TabInterpretacion({ bien }: { bien: Bien }) {
     inicializarAnecdotas
   );
 
+  // Estado para el mensaje de bienvenida
+  const [generarBienvenidaAuto, setGenerarBienvenidaAuto] = useState<boolean>(
+    bien.generar_bienvenida_auto ?? true
+  );
+
   // Añadir nuevo mensaje clave
   const agregarMensajeClave = () => {
     setMensajesClave([
@@ -433,6 +438,60 @@ export function TabInterpretacion({ bien }: { bien: Bien }) {
             className="mt-1"
           />
         </div>
+      </div>
+
+      {/* Mensaje de bienvenida */}
+      <div className="space-y-4 border-t pt-6">
+        <h2 className="text-xl font-semibold text-gray-900">
+          Mensaje de bienvenida
+        </h2>
+
+        <div className="flex items-center gap-3">
+          <input
+            type="checkbox"
+            id="generar_bienvenida_auto"
+            name="generar_bienvenida_auto"
+            checked={generarBienvenidaAuto}
+            onChange={(e) => setGenerarBienvenidaAuto(e.target.checked)}
+            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+          />
+          <label
+            htmlFor="generar_bienvenida_auto"
+            className="text-sm font-medium text-gray-900 cursor-pointer"
+          >
+            Generar automáticamente con IA
+          </label>
+        </div>
+
+        <div>
+          <label
+            htmlFor="mensaje_bienvenida"
+            className="text-sm font-medium leading-none block mb-1 text-gray-900"
+          >
+            Mensaje personalizado
+          </label>
+          <Textarea
+            id="mensaje_bienvenida"
+            name="mensaje_bienvenida"
+            defaultValue={bien.mensaje_bienvenida || ""}
+            placeholder="Bienvenido. Soy..."
+            rows={4}
+            disabled={generarBienvenidaAuto}
+            className="mt-1"
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            {generarBienvenidaAuto
+              ? "Si está activado, la IA generará una bienvenida única basada en los datos del bien. Desactívalo para escribir tu propio mensaje."
+              : "Escribe tu mensaje personalizado de bienvenida."}
+          </p>
+        </div>
+
+        {/* Campo oculto para enviar el valor del toggle */}
+        <input
+          type="hidden"
+          name="generar_bienvenida_auto"
+          value={generarBienvenidaAuto ? "true" : "false"}
+        />
       </div>
 
       {/* Control editorial */}
